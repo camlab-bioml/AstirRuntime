@@ -4,15 +4,15 @@ from anndata import AnnData
 
 configfile: "runtime-analysis-config.yml"
 
-input_data = "../imc-2020/output/squirrel/sces/"
-markers_path = "../imc-2020/markers/"
+input_data = "input/sces/"
+markers_path = "input/markers/"
 output_path = "output/" + config['version'] + "/"
 
 
-no_of_cells = [1000, 2000, 3000]
+no_of_cells = [50000, 100000, 800000]
 marker_options = ['all_markers', 'specified_markers']
-phenograph_sizes = [10, 20, 30]
-FlowSOM_sizes = [4, 6, 8]
+phenograph_sizes = [10, 20, 30, 40, 50, 100]
+FlowSOM_sizes = [4, 7, 8, 12, 15, 20]
 acdc_options = [ 'absent', 'no-consider']
 
 runtime_output = {
@@ -23,7 +23,7 @@ runtime_output = {
                                cells = no_of_cells, markers = marker_options, k = FlowSOM_sizes),
     'ClusterX_runtime': expand(output_path + "runtime/ClusterX-{cells}-cells-{markers}.csv", 
                                cells = no_of_cells, markers = marker_options),
-    'acdc': expand(output_path + 'runtime/ACDC-{cells}-cells-{options}.csv', cells = 1000, options = 'absent'),#cells = no_of_cells, options = acdc_options),
+    'acdc': expand(output_path + 'runtime/ACDC-{cells}-cells-{options}.csv', cells = no_of_cells, options = acdc_options),
     'viz': output_path + "figures/runtime.pdf"
 }
 

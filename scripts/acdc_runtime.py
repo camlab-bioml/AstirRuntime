@@ -141,6 +141,6 @@ time = datetime.now() - start
 
 df_output = pd.DataFrame({'time': time, 
                           'method': 'ACDC-' + args.method,
-                          'cells': args.cohort})
+                          'cells': [args.cohort]})
 
 df_output.to_csv(args.output_assignments, sep="\t")
