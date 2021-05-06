@@ -4,8 +4,8 @@ from anndata import AnnData
 
 configfile: "runtime-analysis-config.yml"
 
-input_data = "../imc-2020/output/squirrel/sces/"
-markers_path = "../imc-2020/markers/"
+input_data = "input/sces/"
+markers_path = "input/markers/"
 output_path = "output/" + config['version'] + "/"
 
 
