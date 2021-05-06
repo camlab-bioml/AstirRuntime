@@ -23,7 +23,7 @@ runtime_output = {
                                cells = no_of_cells, markers = marker_options, k = FlowSOM_sizes),
     'ClusterX_runtime': expand(output_path + "runtime/ClusterX-{cells}-cells-{markers}.csv", 
                                cells = no_of_cells, markers = marker_options),
-    'acdc': expand(output_path + 'runtime/ACDC-{cells}-cells-{options}.csv', cells = 1000, options = 'absent'),#cells = no_of_cells, options = acdc_options),
+    'acdc': expand(output_path + 'runtime/ACDC-{cells}-cells-{options}.csv', cells = no_of_cells, options = acdc_options),
     'viz': output_path + "figures/runtime.pdf"
 }
 
