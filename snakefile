@@ -9,10 +9,10 @@ markers_path = "../imc-2020/markers/"
 output_path = "output/" + config['version'] + "/"
 
 
-no_of_cells = [1000, 2000, 3000]
+no_of_cells = [50000, 100000, 800000]
 marker_options = ['all_markers', 'specified_markers']
-phenograph_sizes = [10, 20, 30]
-FlowSOM_sizes = [4, 6, 8]
+phenograph_sizes = [10, 20, 30, 40, 50, 100]
+FlowSOM_sizes = [4, 7, 8, 12, 15, 20]
 acdc_options = [ 'absent', 'no-consider']
 
 runtime_output = {
