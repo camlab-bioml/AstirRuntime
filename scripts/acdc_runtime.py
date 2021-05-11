@@ -107,40 +107,42 @@ df = pd.DataFrame(X)
 df.columns = adata.var.index
 df.index = adata.obs.index
 
-start = datetime.now()
+if __name__ == '__main__':
 
-mk_model =  compute_marker_model(df, table2, 0.0)
+    start = datetime.now()
 
-
-score = get_score_mat(X, [], table2, [], mk_model)
-score = np.concatenate([score, 1.0 - score.max(axis = 1)[:, np.newaxis]], axis = 1)   
+    mk_model =  compute_marker_model(df, table2, 0.0)
 
 
-ct_index = get_unique_index(X, score, table2, thres)
+    score = get_score_mat(X, [], table2, [], mk_model)
+    score = np.concatenate([score, 1.0 - score.max(axis = 1)[:, np.newaxis]], axis = 1)   
 
 
-score = get_score_mat(X, [], table2, [], mk_model)
-score = np.concatenate([score, 1.0 - score.max(axis = 1)[:, np.newaxis]], axis = 1)    
+    ct_index = get_unique_index(X, score, table2, thres)
 
 
-ct_index = get_unique_index(X, score, table2, thres)
-    
-
-y_pred_index = np.argmax(score, axis = 1)
-    
-res_c = get_landmarks(X, score, ct_index, idx2ct, phenograph, thres=0.9)
-
-landmark_mat, landmark_label = output_feature_matrix(res_c, [idx2ct[i] for i in range(len(idx2ct))]) 
-
-landmark_label = np.array(landmark_label)
-
-lp, y_pred = rm_classify(X, landmark_mat, landmark_label, n_neighbor)
-
-time = datetime.now() - start
+    score = get_score_mat(X, [], table2, [], mk_model)
+    score = np.concatenate([score, 1.0 - score.max(axis = 1)[:, np.newaxis]], axis = 1)    
 
 
-df_output = pd.DataFrame({'time': time, 
-                          'method': 'ACDC-' + args.method,
-                          'cells': [args.cohort]})
+    ct_index = get_unique_index(X, score, table2, thres)
+        
 
-df_output.to_csv(args.output_assignments, sep="\t")
+    y_pred_index = np.argmax(score, axis = 1)
+        
+    res_c = get_landmarks(X, score, ct_index, idx2ct, phenograph, thres=0.9)
+
+    landmark_mat, landmark_label = output_feature_matrix(res_c, [idx2ct[i] for i in range(len(idx2ct))]) 
+
+    landmark_label = np.array(landmark_label)
+
+    lp, y_pred = rm_classify(X, landmark_mat, landmark_label, n_neighbor)
+
+    time = datetime.now() - start
+
+
+    df_output = pd.DataFrame({'time': time, 
+                            'method': 'ACDC-' + args.method,
+                            'cells': [args.cohort]})
+
+    df_output.to_csv(args.output_assignments, sep="\t")
