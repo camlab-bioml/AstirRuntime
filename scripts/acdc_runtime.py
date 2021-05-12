@@ -145,4 +145,4 @@ if __name__ == '__main__':
                             'method': 'ACDC-' + args.method,
                             'cells': [args.cohort]})
 
-    df_output.to_csv(args.output_assignments, sep="\t")
+    df_output.to_csv(args.output_assignments, sep=",")
