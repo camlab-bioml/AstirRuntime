@@ -8,23 +8,23 @@ input_data = "input/sces/"
 markers_path = "input/markers/"
 output_path = "output/" + config['version'] + "/"
 
-
-no_of_cells = [50000, 100000, 800000]
+no_of_cells = [50000, 100000]
+no_of_cells_extended = [50000, 100000, 800000]
 marker_options = ['all_markers', 'specified_markers']
 phenograph_sizes = [10, 20, 30, 40, 50, 100]
 FlowSOM_sizes = [4, 7, 8, 12, 15, 20]
 acdc_options = [ 'absent', 'no-consider']
 
 runtime_output = {
-    'astir_runtime': expand(output_path + "runtime/astir-{cells}-cells.csv", cells = no_of_cells),
+    'astir_runtime': expand(output_path + "runtime/astir-{cells}-cells.csv", cells = no_of_cells_extended),
     'phenograph_runtime': expand(output_path + "runtime/phenograph-{cells}-cells-{markers}-k-{k}.csv", 
-                               cells = no_of_cells, markers = marker_options, k = phenograph_sizes),
+                               cells = no_of_cells_extended, markers = marker_options, k = phenograph_sizes),
     'FlowSOM_runtime': expand(output_path + "runtime/FlowSOM-{cells}-cells-{markers}-k-{k}.csv", 
-                               cells = no_of_cells, markers = marker_options, k = FlowSOM_sizes),
+                               cells = no_of_cells_extended, markers = marker_options, k = FlowSOM_sizes),
     'ClusterX_runtime': expand(output_path + "runtime/ClusterX-{cells}-cells-{markers}.csv", 
                                cells = no_of_cells, markers = marker_options),
     'acdc': expand(output_path + 'runtime/ACDC-{cells}-cells-{options}.csv', cells = no_of_cells, options = acdc_options),
-    'viz': output_path + "figures/runtime.pdf",
+    #'viz': output_path + "figures/runtime.pdf",
     'runtime_summary': output_path + 'runtime/all_runtimes.csv'
 }
 
