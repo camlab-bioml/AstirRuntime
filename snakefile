@@ -41,7 +41,8 @@ rule all:
         FlowSOM = runtime_output['FlowSOM_runtime'],
         ClusterX = runtime_output['ClusterX_runtime'],
         acdc = runtime_output['acdc'],
-        viz = runtime_output['viz']
+        viz = runtime_output['viz'],
+        summary = runtime_output['runtime_summary']
 
 
 rule create_ad_subsets:
