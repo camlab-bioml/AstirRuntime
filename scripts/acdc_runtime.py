@@ -141,8 +141,8 @@ if __name__ == '__main__':
     time = datetime.now() - start
 
 
-    df_output = pd.DataFrame({'time': time, 
-                            'method': 'ACDC-' + args.method,
+    df_output = pd.DataFrame({'time': [time.total_seconds()], 
+                            'method': ['ACDC-' + args.method],
                             'cells': [args.cohort]})
 
-    df_output.to_csv(args.output_assignments, sep=",")
+    df_output.to_csv(args.output_assignments, sep=",", index = False)
