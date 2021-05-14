@@ -8,8 +8,8 @@ input_data = "input/sces/"
 markers_path = "input/markers/"
 output_path = "output/" + config['version'] + "/"
 
-no_of_cells = [50000, 100000]
-no_of_cells_extended = [50000, 100000, 800000]
+no_of_cells = [50000, 100000, 400000]
+no_of_cells_extended = [50000, 100000, 400000, 800000]
 marker_options = ['all_markers', 'specified_markers']
 phenograph_sizes = [10, 20, 30, 40, 50, 100]
 FlowSOM_sizes = [4, 7, 8, 12, 15, 20]
