@@ -24,7 +24,7 @@ runtime_output = {
     'ClusterX_runtime': expand(output_path + "runtime/ClusterX-{cells}-cells-{markers}.csv", 
                                cells = no_of_cells, markers = marker_options),
     'acdc': expand(output_path + 'runtime/ACDC-{cells}-cells-{options}.csv', cells = no_of_cells_extended, options = acdc_options),
-    #'viz': output_path + "figures/runtime.pdf",
+    'viz': output_path + "figures/runtime.pdf",
     'runtime_summary': output_path + 'runtime/all_runtimes.csv'
 }
 
@@ -161,10 +161,7 @@ rule acdc:
 
 rule viz_runtime:
     input:
-        astir = runtime_output['astir_runtime'],
-        phenograph = runtime_output['phenograph_runtime'],
-        FlowSOM = runtime_output['FlowSOM_runtime'],
-        ClusterX = runtime_output['ClusterX_runtime']
+        runtimes = runtime_output['runtime_summary']
     output:
         fig = runtime_output['viz']
     script:
