@@ -4,7 +4,7 @@ devtools::load_all("../taproom/")
 
 
 
-all <- read_csv(input@snakemake[['runtimes']])
+all <- read_csv(snakemake@input[['runtimes']])
 
 pdf(snakemake@output[['fig']], width = 10, height = 5)
 all %>% 
