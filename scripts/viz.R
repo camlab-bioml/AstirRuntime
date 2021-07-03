@@ -5,17 +5,24 @@ devtools::load_all("../taproom/")
 
 
 all <- read_csv(snakemake@input[['runtimes']])
+all <- read_csv("../astir-manuscript-runtime/output/cardinal/runtime/all_runtimes.csv")
 
-pdf(snakemake@output[['fig']], width = 10, height = 5)
+pdf(snakemake@output[['fig']], width = 7, height = 5)
+pdf("../astir-manuscript-runtime/output/cardinal/figures/runtime.pdf", width = 7, height = 4)
 all %>% 
   mutate(algorithm = str_split_fixed(.$method, "-", 2)[,1]) %>% 
-  ggplot(aes(x = cells, y = log10(time), color = algorithm, group = method)) +
-  geom_point() +
-  geom_line() +
+  group_by(algorithm, cells) %>% 
+  summarise(mean_runtime = mean(time)) %>% 
+  ggplot(aes(x = cells, y = mean_runtime, color = algorithm)) +
+  geom_point(size = 3) +
+  geom_line(size = 2) +
+  scale_y_log10() + 
   scale_x_continuous(breaks = unique(all$cells)) +
   scale_color_brewer(palette = "Set1") +
   astir_paper_theme() +
-  labs(x = "Number of Cells", y = "log10(Time (seconds))", color = "Method")
+  labs(x = "Number of cells", y = "Run time (s)", color = "Method") +
+  theme(legend.position = "top",
+        axis.text.x = element_text(angle = 45,  hjust = 1, vjust = 1))
 dev.off()
 
 

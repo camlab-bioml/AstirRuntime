@@ -1,5 +1,9 @@
 library(tidyverse)
 
+read_in_runtime <- function(x){
+  run <- read_csv(x)
+  
+}
 
 astir <- map_dfr(snakemake@input[['astir']], read_csv)
 phenograph <- map_dfr(snakemake@input[['phenograph']], read_csv)
